@@ -70,8 +70,22 @@ jobs:
 
       - name: Delete old Kubernetes resources
         run: |
-          your kubernetes delete command here
+          kubectl delete -f /kubernetes/deploy.yaml
+          kubectl delete -f /kubernetes/service.yaml
 
       - name: Deploy new version to EKS
         run: |
-          your kubernetes apply command here
+          sed -i 's|aws_access_key|${{ secrets.AWS_ACCESS_KEY_ID }}|g'
+          sed -i 's|aws_secret_access_key|${{ secrets.AWS_SECRET_ACCESS_KEY }}|g'
+          sed -i 's|aws_session_token|${{ secrets.AWS_SESSION_TOKEN }}|g'
+          sed -i 's|aws_region|${{ secrets.AWS_REGION }}|g'
+          sed -i 's|athena_db|${{ secrets.ATHENA_DB }}|g'
+          sed -i 's|s3_staging_dir|${{ secrets.S3_STAGING_DIR }}|g'
+          sed -i 's|flask_secret_key|${{ secrets.FLASK_SECRET_KEY }}|g'
+          sed -i 's|api_gateway_url|${{ secrets.API_GATEWAY_URL }}|g'
+          sed -i 's|sns_topic_arn|${{ secrets.SNS_TOPIC_ARN }}|g'
+          sed -i 's|athena_schema_name|${{ secrets.ATHENA_SCHEMA_NAME }}|g'
+          
+          kubectl apply -f /kubernetes/deploy.yaml
+          kubectl apply -f /kubernetes/service.yaml
+          
