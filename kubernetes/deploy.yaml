@@ -2,9 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-deployment
-  namespace: deploy
   labels:
-    app: deploy
+    app: app
 spec:
   selector:
     matchLabels:
@@ -13,9 +12,30 @@ spec:
     metadata:
       labels:
         app: app
+    spec:
       containers:
       - name: nginx
         image: 942368311701.dkr.ecr.us-east-1.amazonaws.com/techno-ecr-banjarbaru-iqbal:v1.1.0
         ports:
         - name: http
           containerPort: 2000
+        - name: AWS_ACCESS_KEY_ID
+          value : aws_access_key
+        - name: AWS_SECRET_ACCESS_KEY
+          value: aws_secret_access_key
+        - name: AWS_SESSION_TOKEN
+          value: aws_session_token
+        - name: AWS_REGION
+          value: aws_region
+        - name: ATHENA_DB
+          value: athena_db
+        - name: S3_STAGING_DIR
+          value: s3_staging_dir
+        - name: FLASK_SECRET_KEY
+          value: flask_secret_key
+        - name: API_GATEWAY_URL
+          value: api_gateway_url
+        - name: SNS_TOPIC_ARN
+          value: sns_topic_arn
+        - name: ATHENA_SCHEMA_NAME
+          value: athena_schema_name
