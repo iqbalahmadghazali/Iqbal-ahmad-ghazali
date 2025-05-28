@@ -86,6 +86,6 @@ jobs:
           sed -i 's|sns_topic_arn|${{ secrets.SNS_TOPIC_ARN }}|g' kubernetes/deploy.yaml
           sed -i 's|athena_schema_name|${{ secrets.ATHENA_SCHEMA_NAME }}|g' kubernetes/deploy.yaml
           
-          kubectl apply -f kubernetes/deployments.apps.yaml
+          kubectl apply -f kubernetes/deploy.yaml
           kubectl apply -f kubernetes/service.yaml
           
