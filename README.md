@@ -2,8 +2,8 @@
 
 ## Form Data
 Input your data in here:<br/>
-Name : <br/>
-YourCity : 
+Name : Iqbal Ahmad Ghazali <br/>
+YourCity : Banjarbaru
 
 ## Application Port
 `Port application running on 2000`
