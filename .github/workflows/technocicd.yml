@@ -70,8 +70,8 @@ jobs:
 
       - name: Delete old Kubernetes resources
         run: |
-          kubectl delete -f /kubernetes/deploy.yaml
-          kubectl delete -f /kubernetes/service.yaml
+          kubectl delete -f kubernetes/deploy.yaml
+          kubectl delete -f kubernetes/service.yaml
 
       - name: Deploy new version to EKS
         run: |
