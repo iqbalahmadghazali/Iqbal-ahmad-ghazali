@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment
+  name: deployment
   labels:
     app: app
 spec:
@@ -19,6 +19,7 @@ spec:
         ports:
         - name: http
           containerPort: 2000
+        env:
         - name: AWS_ACCESS_KEY_ID
           value : aws_access_key
         - name: AWS_SECRET_ACCESS_KEY
